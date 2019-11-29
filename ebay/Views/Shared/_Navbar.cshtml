@@ -1,0 +1,69 @@
+﻿<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="position:static;top:0px;left:0px;right:0px;">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="navbar-brand" href="~/Default/Home">Northwind Alış-Veriş Merkezi</a>
+        </li>
+        @if (User.Identity.IsAuthenticated == true)
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="font-size:large;">Gezgin</a>
+                <div class="dropdown-menu">
+                    @if (User.IsInRole("A"))
+                    {
+                        <a class="dropdown-item" href="/Region/Index">Bölgeler</a>
+                        <a class="dropdown-item" href="/Customers/Index">Müşteriler</a>
+                    }
+                    <a class="dropdown-item" href="/Product/Index">Ürünler</a>
+                    <a class="dropdown-item" href="/Product/GetImage">Ürün Kategorileri</a>
+                    <a class="dropdown-item" href="/Orders/Index">Siparişlerim</a>
+                </div>
+            </li>
+        }
+    </ul>
+
+    @if (User.Identity.IsAuthenticated == true)
+    {
+        <ul class="navbar-nav" style="position:absolute; right:10px;">
+            <li class="nav-item" style="margin-right:10px;">
+                <form class="form-inline" action="/Search/Default">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Arama">
+                    <button class="btn btn-success" type="submit">Ara</button>
+                </form>
+            </li>
+            <li class="nav-item">
+                <span class="badge badge-primary badge-pill" style="margin:inherit; margin-right:15px;">
+                    <a style="color:black;" class="nav-link" href="/Security/Logout">Çıkış Yap @{Html.RenderAction("contactName", "Security");}</a>
+                </span>
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="navbar-nav" style="position:absolute;right:270px;">
+            <li class="nav-item">
+                <form class="form-inline" action="/Search/Default">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Arama">
+                    <button class="btn btn-success" type="submit">Ara</button>
+                </form>
+            </li>
+
+        </ul>
+        <ul class="navbar-nav" style="position:absolute; right:130px">
+            <li class="nav-item">
+                <span class="badge badge-primary badge-pill" style="margin:inherit; margin-right:15px;">
+                    <a class="nav-link" style="width:100px;color:black;" href="/Security/Login">Giriş Yap</a>
+
+                </span>
+            </li>
+        </ul>
+        <ul class="navbar-nav" style="position:absolute; right:10px">
+            <li class="nav-item">
+                <span class="badge badge-secondary badge-pill" style="margin:inherit; margin-right:15px;">
+                    <a class="nav-link" style="width:100px;color:black;" href="/Security/Login">Kaydol</a>
+
+                </span>
+            </li>
+        </ul>
+    }
+
+</nav>

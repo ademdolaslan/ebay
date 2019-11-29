@@ -1,0 +1,45 @@
+﻿@model ebay.Models.EntityFramework.Customers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/asd.css" rel="stylesheet" />
+    <title>Giriş Yap</title>
+</head>
+<body>
+    <div class="container" style="position:center; width:auto;">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            @ViewBag.Mesaj
+            @using (Html.BeginForm("Login", "Security", FormMethod.Post, new { @class = "form-signin" }))
+            {
+                <span id="reauth-email" class="reauth-email"></span>
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Şifre" })
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Beni Hatırla
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Oturum Aç</button>
+                <a class="btn btn-lg btn-primary btn-block btn-signin" href="~/Default/Home" style="text-align:center;line-height: 35px;">Ana Sayfa</a>
+
+
+            }
+            <br />
+            <br />
+            @Html.ActionLink("Şifrenizimi unuttunuz?", "SifremiUnuttum", "Security", new { @class = "form-control" })
+
+        </div>
+    </div>
+    
+</body>
+</html>
+<script src="~/Scripts/asd.js"></script>

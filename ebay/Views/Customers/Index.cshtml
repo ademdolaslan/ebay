@@ -1,0 +1,117 @@
+﻿@model IEnumerable<ebay.Models.EntityFramework.Customers>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<br />
+<br />
+<br />
+@if (User.IsInRole("A"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-success", @style = "width:150px" })
+    </p>
+}
+
+<table class="table" id="customertable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Region)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fax)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+
+                @if (item.Region != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Region)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        Atanmamış
+                    </td>
+                }
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fax)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.CustomerID }, new { @class = "btn btn-success", @style = "width:100px" })
+                    <br />
+                    @Html.ActionLink("Detaylar", "Details", new { id = item.CustomerID }, new { @class = "btn btn-info", @style = "width:100px" })
+                    <br />
+                    @Html.ActionLink("Sil", "Delete", new { id = item.CustomerID }, new { @class = "btn btn-danger", @style = "width:100px" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+

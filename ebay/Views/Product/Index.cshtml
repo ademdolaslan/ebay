@@ -1,0 +1,81 @@
+﻿@model List<ebay.Models.EntityFramework.Products>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<h1>Ürün Listesi</h1>
+<br />
+<br />
+@if (User.IsInRole("A"))
+{
+    @Html.ActionLink("Yeni Ürün Ekle", "NewProduct", null, new { @class = "btn btn-success" })
+    <br />
+    <br />
+    <br />
+}
+
+
+
+
+
+<table class="table table-bordered" id="producttable">
+    <thead>
+        <tr>
+            <td>Ürün Numarası</td>
+            <td>Ürün Açıklaması</td>
+            <td>Ürün Tedarikçisi</td>
+            <td>Ürün Kategorisi</td>
+            <td>Birim Başına Miktar</td>
+            <td>Ürün Fiyat</td>
+            <td>Ürün Stok</td>
+            <td>Siparişi Verilmiş</td>
+            <td>İade Durumu</td>
+            <td>Durdurulan</td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("A"))
+                {
+                    <td>Güncelle</td>
+                    <td>Sİl</td>
+                    }
+
+                }
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var porduct in Model)
+        {
+            <tr>
+                <td>@porduct.ProductID</td>
+                <td>@porduct.ProductName</td>
+                <td>@porduct.Suppliers.CompanyName</td>
+                <td>@porduct.Categories.CategoryName</td>
+                <td>@porduct.QuantityPerUnit</td>
+                <td>@porduct.UnitPrice</td>
+                <td>@porduct.UnitsInStock</td>
+                <td>@porduct.UnitsOnOrder</td>
+                <td>@porduct.ReorderLevel</td>
+                <td>@(porduct.Discontinued == true ? "Continue" : "Discontinue")</td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("A"))
+                    {
+                        <td>@Html.ActionLink("Update", "UpdateProduct", new { id = porduct.ProductID }, new { @class = "btn btn-success" })</td>
+                        <td>@Html.ActionLink("Delete", "DeleteProduct", new { id = porduct.ProductID }, new { @class = "btn btn-warning" })</td>
+                    }
+
+                }
+
+
+
+
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>

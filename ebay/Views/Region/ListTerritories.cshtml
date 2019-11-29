@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ebay.Models.EntityFramework.Territories>
+<hr />
+<hr />
+<br />
+<br />
+<h2>Bu Bölgeye Ait Şehirler</h2>
+<table class="table table-bordered" id="tblTerritories">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bölge Açıklaması</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TerritoryID</td>
+                <td>@item.TerritoryDescription</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

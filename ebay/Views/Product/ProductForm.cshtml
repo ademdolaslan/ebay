@@ -1,0 +1,81 @@
+﻿@model ebay.ViewModels.ProductFormViewModel
+@{
+    ViewBag.Title = "ProductForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<h2>Product Form</h2>
+@using (Html.BeginForm("ApplyProduct", "Product", FormMethod.Post))
+{
+    
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m._Products.ProductName)
+        @Html.TextBoxFor(m => m._Products.ProductName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._Products.ProductName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m._Products.Suppliers.CompanyName)
+        @Html.DropDownListFor(m => m._Products.SupplierID,
+       new SelectList(Model._Suppliers,"SupplierID","CompanyName"),
+       "Choose Suppliers",
+       new { @class= "form-control" }
+       )
+        @Html.ValidationMessageFor(m => m._Products.SupplierID)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m._Products.Categories.CategoryName)
+        @Html.DropDownListFor(m => m._Products.CategoryID,
+       new SelectList(Model._Categories, "CategoryID", "CategoryName"),
+       "Choose Category",
+       new { @class = "form-control" }
+       )
+        @Html.ValidationMessageFor(m => m._Products.CategoryID)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m._Products.QuantityPerUnit)
+        @Html.TextBoxFor(m => m._Products.QuantityPerUnit, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._Products.QuantityPerUnit)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m._Products.UnitPrice)
+        @Html.TextBoxFor(m => m._Products.UnitPrice, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._Products.UnitPrice)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m._Products.UnitsInStock)
+        @Html.TextBoxFor(m => m._Products.UnitsInStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._Products.UnitsInStock)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m._Products.UnitsOnOrder)
+        @Html.TextBoxFor(m => m._Products.UnitsOnOrder, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._Products.UnitsOnOrder)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m._Products.ReorderLevel)
+        @Html.TextBoxFor(m => m._Products.ReorderLevel, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._Products.ReorderLevel)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m._Products.Discontinued)
+        <br />
+        <label>
+            @Html.RadioButtonFor(m => m._Products.Discontinued, true) Continued
+        </label>
+        <label>
+            @Html.RadioButtonFor(m => m._Products.Discontinued, false) Discontinued
+        </label>
+
+        @Html.ValidationMessageFor(m => m._Products.Discontinued)
+    </div>
+    @Html.HiddenFor(m => m._Products.ProductID)
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+
+}
+
+
+
+

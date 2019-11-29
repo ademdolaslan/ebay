@@ -1,0 +1,68 @@
+﻿@model List<ebay.Models.EntityFramework.Categories>
+@{
+    ViewBag.Title = "Images";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-md-3 border border-success" style="width:400px;height:400px; margin-left:10px; margin-top:10px;">
+            <div style="position:relative;top:3px;left:45px;height:120px;width:175px;">
+                <img src="data:image/png;base64,@Convert.ToBase64String(item.Picture,78,item.Picture.Length-78 ,Base64FormattingOptions.None)" alt="Image" />
+            </div>
+            <div style="position:relative;top:30px;left:45px;">
+                <a style="color:deepskyblue; font-size:xx-large;">
+                    @item.CategoryName
+                </a>
+
+            </div>
+            <div style="position:relative;top:70px;">
+                <a>
+                    @item.Description
+                </a>
+
+            </div>
+
+            <div style="position:relative; left:45px; top:130px;">
+                
+                @Html.ActionLink("Detaylar","UrunGetir","Product",new { @class= "btn btn-outline-success" })
+
+            </div>
+
+
+        </div>
+        <br />
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+@*<img src="data:image/png;base64,@Convert.ToBase64String(item.Picture,78,item.Picture.Length-78 ,Base64FormattingOptions.None)" alt="Image" />*@
+
+
+
+@*@{ byte[] photo = item.Picture;
+        string imageSrc = null;
+        if (photo != null)
+        {
+            MemoryStream ms = new MemoryStream();
+            ms.Write(photo, 78, photo.Length - 78);
+            string imageBase64 = Convert.ToBase64String(ms.ToArray());
+            imageSrc = string.Format("data:image/jpeg;base64,{0}", imageBase64);
+        }
+    }
+
+    <img src="@imageSrc" alt="Image" />*@
+

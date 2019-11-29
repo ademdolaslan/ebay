@@ -1,0 +1,25 @@
+﻿@using ebay.Models
+@using ebay.Controllers
+@using System.Web.Optimization
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Northwind Alışveriş Merkezi</title>
+    @Styles.Render("~/bundles/css")
+    @* css kısımları*@
+</head>
+<body>
+    @Html.Partial("_Navbar")    
+    <div class="container">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/scripts")
+    @* script kısımları *@
+</body>
+</html>

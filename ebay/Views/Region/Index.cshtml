@@ -1,0 +1,38 @@
+﻿@using ebay.Models.EntityFramework
+
+
+@model List<Region>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<h1 class="container">Bölge Listesi</h1>
+<hr />
+<table class="table table-bordered" id="regiontablo">
+    <thead>
+        <tr>
+            <th>Bölge Numarası</th>
+            <th>Bölge Açıklaması</th>
+            <th>Genişlet</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var region in Model)
+        {
+            <tr>
+                <td>@region.RegionID</td>
+                <td>@region.RegionDescription</td>
+                <td>
+                    @Ajax.ActionLink("Şehirleri Göster", "ListTerritories", "Region", 
+                   new { id = region.RegionID }, 
+                   new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "territoryList" }, 
+                   new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="territoryList">
+</div>
